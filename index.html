@@ -194,7 +194,18 @@
     if(!window.ch)window.ch=db.channel('b').on('postgres_changes',{event:'*',schema:'public',table:'lc_bookings'},()=>{if(app.querySelector('#lo'))staff()}).subscribe()}
         init();
     </script>
-<button id="inst" hidden style="position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));z-index:99;border:0;border-radius:999px;padding:12px 20px;font:800 14px Manrope,system-ui,sans-serif;background:linear-gradient(#FFD21F,#FFB800);color:#15171C;box-shadow:0 8px 20px #0003">Install app</button>
+<style>
+#inst{position:fixed;right:14px;bottom:calc(96px + env(safe-area-inset-bottom));left:auto;z-index:99;border:0;border-radius:999px;padding:13px 20px 13px 14px;gap:9px;align-items:center;font:800 14px Manrope,system-ui,sans-serif;letter-spacing:.2px;color:#fff;cursor:pointer;background:linear-gradient(135deg,#34D96B,#12A94A);box-shadow:0 10px 24px #12A94A66,inset 0 1px 0 #ffffff66;text-shadow:0 1px 2px #0a6a2d88;animation:instIn .7s cubic-bezier(.2,1.3,.4,1) both,instPulse 2s 1s infinite}
+#inst:not([hidden]){display:flex}
+#inst:active{transform:scale(.94)}
+#inst .ico{width:28px;height:28px;border-radius:50%;background:#fff;display:grid;place-items:center;animation:instBob 1.4s 1s ease-in-out infinite}
+#inst .ico svg{width:16px;height:16px}
+@keyframes instIn{0%{opacity:0;transform:translateX(130%) scale(.7)}60%{opacity:1;transform:translateX(-8px) scale(1.06)}100%{opacity:1;transform:none}}
+@keyframes instPulse{0%{box-shadow:0 10px 24px #12A94A66,0 0 0 0 #34D96BAA}70%{box-shadow:0 10px 24px #12A94A66,0 0 0 16px #34D96B00}100%{box-shadow:0 10px 24px #12A94A66,0 0 0 0 #34D96B00}}
+@keyframes instBob{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+@media (prefers-reduced-motion:reduce){#inst,#inst .ico{animation:none}}
+</style>
+<button id="inst" hidden><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#12A94A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg></span>Install app</button>
 <script>
 if('serviceWorker' in navigator&&location.protocol!=='file:')addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 let dip;const ib=document.getElementById('inst');
